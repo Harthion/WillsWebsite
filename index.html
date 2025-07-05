@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>William Kazimir Jurek - Visual Storyteller</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica', Arial, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: #0a0a0a;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff6b6b;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            z-index: 2;
+            color: #fff;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: linear-gradient(45deg, #fff, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+            color: #fff;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+        }
+
+        /* Floating particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 107, 107, 0.5);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { top: 60%; left: 20%; animation-delay: 2s; }
+        .particle:nth-child(3) { top: 80%; left: 80%; animation-delay: 4s; }
+        .particle:nth-child(4) { top: 30%; right: 10%; animation-delay: 1s; }
+        .particle:nth-child(5) { top: 70%; right: 30%; animation-delay: 3s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); opacity: 0.5; }
+            50% { transform: translateY(-20px); opacity: 1; }
+        }
+
+        /* About Section */
+        .about {
+            background: #111;
+            padding: 100px 0;
+            position: relative;
+            color: #fff;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: #fff;
+            font-weight: 900;
+        }
+
+        .about-text p {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #fff;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .about-image {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(45deg, #ff6b6b, #000);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        /* Portfolio Sections */
+        .portfolio-section {
+            padding: 100px 0;
+            background: #0f0f0f;
+            color: #fff;
+        }
+
+        .portfolio-section:nth-child(even) {
+            background: #111;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 3rem;
+            color: #fff;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .portfolio-item {
+            background: #1a1a1a;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .portfolio-image {
+            height: 250px;
+            background: linear-gradient(45deg, #ff6b6b, #000);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-image::before {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .portfolio-content p {
+            color: #fff;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .tech-details {
+            background: #222;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .tech-details h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tech-details p {
+            font-size: 0.9rem;
+            color: #fff;
+            margin: 0;
+        }
+
+        /* Music Section Styles */
+        .music-upload-section {
+            margin-bottom: 4rem;
+        }
+
+        .upload-area {
+            border: 2px dashed #ff6b6b;
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            background: #1a1a1a;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .upload-area:hover {
+            border-color: #ff8e8e;
+            background: #222;
+        }
+
+        .upload-area.dragover {
+            border-color: #ff8e8e;
+            background: #222;
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .upload-area h3 {
+            color: #fff;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .upload-area p {
+            color: #fff;
+            margin-bottom: 1.5rem;
+        }
+
+        .upload-button {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .music-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .music-item {
+            background: #1a1a1a;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .music-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .music-player {
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .music-artwork {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #ff6b6b, #000);
+            border-radius: 10px;
+            flex-shrink: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .music-artwork::before {
+            content: '🎵';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .music-info {
+            flex: 1;
+        }
+
+        .music-info h3 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .music-info p {
+            color: #fff;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .music-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .play-btn {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .progress-bar {
+            width: 100px;
+            height: 6px;
+            background: #333;
+            border-radius: 3px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .duration {
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 500;
+            min-width: 35px;
+        }
+
+        .music-details {
+            padding: 0 2rem 2rem;
+        }
+
+        .uploaded-file {
+            background: #222;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .uploaded-file .file-info {
+            flex: 1;
+        }
+
+        .uploaded-file .file-name {
+            color: #fff;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .uploaded-file .file-size {
+            color: #fff;
+            font-size: 0.85rem;
+        }
+
+        .remove-file {
+            background: #ff4444;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .remove-file:hover {
+            background: #ff6666;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: #0a0a0a;
+            padding: 100px 0;
+            color: #fff;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #fff, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .contact-item p {
+            color: #fff;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .about-stats {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container" style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+            <!-- Left nav links -->
+            <ul class="nav-links left-nav" style="display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; flex: 1; justify-content: flex-start;">
+                <li><a href="#home" style="font-weight: bold; text-transform: uppercase;">Home</a></li>
+                <li><a href="#about" style="font-weight: bold; text-transform: uppercase;">About</a></li>
+                <li><a href="#contact" style="font-weight: bold; text-transform: uppercase;">Contact</a></li>
+            </ul>
+            <!-- Center logo/name -->
+            <a href="#" class="logo" style="font-size: 1.8rem; font-weight: bold; color: #fff; text-decoration: none; letter-spacing: 2px; text-transform: uppercase; margin: 0 30px; flex: 0 0 auto;">WILLIAM KAZIMIR JUREK</a>
+            <!-- Right nav links and video -->
+            <div style="display: flex; align-items: center; gap: 2rem; flex: 1; justify-content: flex-end;">
+                <ul class="nav-links right-nav" style="display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0;">
+                    <li><a href="#photography" style="font-weight: bold; text-transform: uppercase;">Photography</a></li>
+                    <li><a href="#cinematography" style="font-weight: bold; text-transform: uppercase;">Cinematography</a></li>
+                    <li><a href="#music" style="font-weight: bold; text-transform: uppercase;">Music</a></li>
+                </ul>
+                <!-- Video in navbar -->
+                <video autoplay muted loop playsinline
+                       style="width: 150px; height: auto; margin-left: 10px; border-radius: 1px;">
+                  <source src="static/uploads/3D%20After%20Effects%20logo%20for%20artist.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+            </div>
+        </nav>
+    </header>
+
+
+    <section id="home" class="hero">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        
+        <div class="hero-content">
+            <h1>Visual Storyteller</h1>
+            <p>Capturing moments that matter through photography and cinematography</p>
+            <a href="#about" class="cta-button">Explore My Work</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>ABOUT ME</h2>
+                    <p><div><b>I use my passion for film and education in audiovisual communication to craft compelling stories for brands, film, and mixed media. Having lived and worked in Spain, Italy, and Japan, I’ve developed a deep appreciation for global perspectives and diverse cultures. For me, film is not just a medium—it’s a way to spark meaningful conversations and share unique stories that resonate.</b></div></p>
+                    <p><div><b>With dynamic experience across video and audio production as well as creative storytelling, I help brands grow through impactful advertising and also produce documentary films that celebrate and explore culture. Whether it’s music, film, or anything in between, I’m always open to collaborating on projects of all kinds.</b></div></p>
+                    <p><div><b>If you’re interested in working together or have any questions, feel free to reach out—I’d love to connect.</b></div></p>
+                    
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-number">5+</span>
+                            <span class="stat-label">Years Experience</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">200+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Happy Clients</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="photography" class="portfolio-section">
+        <div class="container">
+            <h2 class="section-title">Photography</h2>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image"></div>
+                    <div class="portfolio-content">
+                        <h3>Ethereal Landscapes</h3>
+                        <p>A collection of moody landscape photographs capturing the raw beauty of nature through dramatic lighting and atmospheric conditions. Each image tells a story of solitude and wonder.</p>
+                        <div class="tech-details">
+                            <h4>Technical Details</h4>
+                            <p><strong>Camera:</strong> Sony A7R IV<br>
+                            <strong>Lenses:</strong> 16-35mm f/2.8, 70-200mm f/2.8<br>
+                            <strong>Editing:</strong> Adobe Lightroom, Photoshop</p>
+                        </div>
+                        <p><strong>Artistic Intent:</strong> To showcase the emotional depth of natural landscapes and inspire viewers to connect with the environment around them.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image"></div>
+                    <div class="portfolio-content">
+                        <h3>Urban Portraits</h3>
+                        <p>Intimate portrait series exploring human connection in urban environments. Each subject is captured with natural light, emphasizing authenticity and emotional depth.</p>
+                        <div class="tech-details">
+                            <h4>Technical Details</h4>
+                            <p><strong>Camera:</strong> Canon EOS R5<br>
+                            <strong>Lenses:</strong> 85mm f/1.4, 50mm f/1.2<br>
+                            <strong>Editing:</strong> Capture One, Adobe Lightroom</p>
+                        </div>
+                        <p><strong>Artistic Intent:</strong> To capture the vulnerability and strength of individuals within the urban landscape, celebrating diversity and human resilience.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image"></div>
+                    <div class="portfolio-content">
+                        <h3>Street Chronicles</h3>
+                        <p>Documentary-style street photography capturing candid moments of city life. These images showcase the rhythm and energy of urban environments.</p>
+                        <div class="tech-details">
+                            <h4>Technical Details</h4>
+                            <p><strong>Camera:</strong> Fujifilm X-T4<br>
+                            <strong>Lenses:</strong> 23mm f/1.4, 35mm f/1.4<br>
+                            <strong>Editing:</strong> Adobe Lightroom, VSCO</p>
+                        </div>
+                        <p><strong>Artistic Intent:</strong> To document the unguarded moments that define urban culture and showcase the beauty in everyday interactions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cinematography" class="portfolio-section">
+        <div class="container">
+            <h2 class="section-title">Cinematography</h2>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image"></div>
+                    <div class="portfolio-content">
+                        <h3>"Midnight Frequency" - Short Film</h3>
+                        <p>A noir-inspired short film exploring themes of isolation and connection in the digital age. Shot entirely at night using practical lighting to create an atmospheric, cinematic experience.</p>
+                        <div class="tech-details">
+                            <h4>Technical Details</h4>
+                            <p><strong>Camera:</strong> RED Komodo 6K<br>
+                            <strong>Lenses:</strong> Sigma Cine Primes 18-50mm<br>
+                            <strong>Editing:</strong> DaVinci Resolve, After Effects</p>
+                        </div>
+                        <p><strong>Artistic Intent:</strong> To create a visual metaphor for modern loneliness while celebrating the power of human connection through cinematic storytelling.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image"></div>
+                    <div class="portfolio-content">
+                        <h3>"Electric Dreams" - Music Video</h3>
+                        <p>High-energy music video featuring dynamic camera movements and vibrant color grading. The visual style complements the electronic music with futuristic aesthetics.</p>
+                        <div class="tech-details">
+                            <h4>Technical Details</h4>
+                            <p><strong>Camera:</strong> Sony FX6<br>
+                            <strong>Lenses:</strong> 24-70mm f/2.8, 16-35mm f/2.8<br>
+                            <strong>Editing:</strong> Adobe Premiere Pro, After Effects</p>
+                        </div>
+                        <p><strong>Artistic Intent:</strong> To create a visual symphony that matches the energy and emotion of the music, using color and movement as narrative elements.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item">
+                    <div class="portfolio-image"></div>
+                    <div class="portfolio-content">
+                        <h3>"Voices Unheard" - Documentary</h3>
+                        <p>Documentary short highlighting local community stories. Intimate interviews and observational footage create a compelling narrative about social change and resilience.</p>
+                        <div class="tech-details">
+                            <h4>Technical Details</h4>
+                            <p><strong>Camera:</strong> Canon C70<br>
+                            <strong>Lenses:</strong> 24-105mm f/4, 70-200mm f/2.8<br>
+                            <strong>Editing:</strong> Avid Media Composer, DaVinci Resolve</p>
+                        </div>
+                        <p><strong>Artistic Intent:</strong> To amplify marginalized voices and create empathy through authentic storytelling and respectful visual documentation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="music" class="portfolio-section">
+        <div class="container">
+            <h2 class="section-title">Music & Audio</h2>
+            <p style="text-align: center; color: #ccc; margin-bottom: 3rem; font-size: 1.1rem;">Original compositions and sound design for film and media projects</p>
+            
+            <div class="music-upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">🎵</div>
+                    <h3>Upload Music Files</h3>
+                    <p>Drag and drop MP3 or WAV files here, or click to browse</p>
+                    <input type="file" id="musicFileInput" accept=".mp3,.wav" multiple style="display: none;">
+                    <button class="upload-button" onclick="document.getElementById('musicFileInput').click()">Choose Files</button>
+                </div>
+            </div>
+
+            <div class="music-grid" id="musicGrid">
+                <!-- Sample music entries -->
+                <div class="music-item">
+                    <div class="music-player">
+                        <div class="music-artwork"></div>
+                        <div class="music-info">
+                            <h3>Cinematic Ambient</h3>
+                            <p>Atmospheric background score for documentary projects</p>
+                        </div>
+                        <div class="music-controls">
+                            <button class="play-btn" onclick="togglePlay(this)">▶️</button>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="duration">3:24</span>
+                        </div>
+                    </div>
+                    <div class="music-details">
+                        <div class="tech-details">
+                            <h4>Production Details</h4>
+                            <p><strong>Genre:</strong> Ambient/Cinematic<br>
+                            <strong>Key:</strong> C Minor<br>
+                            <strong>BPM:</strong> 85<br>
+                            <strong>Software:</strong> Logic Pro X, Ableton Live</p>
+                        </div>
+                        <p><strong>Usage:</strong> Perfect for emotional documentary scenes, introspective moments, and atmospheric transitions.</p>
+                    </div>
+                </div>
+
+                <div class="music-item">
+                    <div class="music-player">
+                        <div class="music-artwork"></div>
+                        <div class="music-info">
+                            <h3>Urban Pulse</h3>
+                            <p>Energetic electronic track for modern video content</p>
+                        </div>
+                        <div class="music-controls">
+                            <button class="play-btn" onclick="togglePlay(this)">▶️</button>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="duration">2:47</span>
+                        </div>
+                    </div>
+                    <div class="music-details">
+                        <div class="tech-details">
+                            <h4>Production Details</h4>
+                            <p><strong>Genre:</strong> Electronic/Hip-Hop<br>
+                            <strong>Key:</strong> E Minor<br>
+                            <strong>BPM:</strong> 128<br>
+                            <strong>Software:</strong> Ableton Live, Native Instruments</p>
+                        </div>
+                        <p><strong>Usage:</strong> Ideal for commercials, music videos, and high-energy promotional content.</p>
+                    </div>
+                </div>
+
+                <div class="music-item">
+                    <div class="music-player">
+                        <div class="music-artwork"></div>
+                        <div class="music-info">
+                            <h3>Nostalgic Strings</h3>
+                            <p>Orchestral piece evoking emotion and memory</p>
+                        </div>
+                        <div class="music-controls">
+                            <button class="play-btn" onclick="togglePlay(this)">▶️</button>
+                            <div class="progress-bar">
+                                <div class="progress-fill"></div>
+                            </div>
+                            <span class="duration">4:12</span>
+                        </div>
+                    </div>
+                    <div class="music-details">
+                        <div class="tech-details">
+                            <h4>Production Details</h4>
+                            <p><strong>Genre:</strong> Orchestral/Classical<br>
+                            <strong>Key:</strong> D Major<br>
+                            <strong>BPM:</strong> 72<br>
+                            <strong>Software:</strong> Cubase, Vienna Symphonic Library</p>
+                        </div>
+                        <p><strong>Usage:</strong> Perfect for dramatic scenes, memorial content, and emotional storytelling moments.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Let's Create Together</h2>
+            <p>Ready to bring your vision to life? I'd love to collaborate on your next project.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>Email</h3>
+                    <p>william.kazimir.jurek@visualstory.com</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Phone</h3>
+                    <p>+1 (555) 123-4567</p>
+                </div>
+                <div class="contact-item">
+                    <h3>Location</h3>
+                    <p>Los Angeles, CA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+        // Music file upload functionality
+        const uploadArea = document.getElementById('uploadArea');
+        const musicFileInput = document.getElementById('musicFileInput');
+        const musicGrid = document.getElementById('musicGrid');
+        let uploadedFiles = [];
+
+        // Drag and drop functionality
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = Array.from(e.dataTransfer.files);
+            handleFiles(files);
+        });
+
+        uploadArea.addEventListener('click', () => {
+            musicFileInput.click();
+        });
+
+        musicFileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            handleFiles(files);
+        });
+
+        function handleFiles(files) {
+            files.forEach(file => {
+                if (file.type === 'audio/mp3' || file.type === 'audio/wav' || file.type === 'audio/mpeg') {
+                    uploadedFiles.push(file);
+                    addMusicItem(file);
+                }
+            });
+        }
+
+        function addMusicItem(file) {
+            const fileSize = (file.size / 1024 / 1024).toFixed(2);
+            const musicItem = document.createElement('div');
+            musicItem.className = 'music-item';
+            musicItem.innerHTML = `
+                <div class="music-player">
+                    <div class="music-artwork"></div>
+                    <div class="music-info">
+                        <h3>${file.name.replace(/\.[^/.]+$/, "")}</h3>
+                        <p>User uploaded track</p>
+                    </div>
+                    <div class="music-controls">
+                        <button class="play-btn" onclick="togglePlay(this, '${URL.createObjectURL(file)}')">▶️</button>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="duration">--:--</span>
+                    </div>
+                </div>
+                <div class="uploaded-file">
+                    <div class="file-info">
+                        <div class="file-name">${file.name}</div>
+                        <div class="file-size">${fileSize} MB</div>
+                    </div>
+                    <button class="remove-file" onclick="removeMusicItem(this)">Remove</button>
+                </div>
+            `;
+            
+            // Insert after the upload section
+            const uploadSection = document.querySelector('.music-upload-section');
+            uploadSection.insertAdjacentElement('afterend', musicItem);
+        }
+
+        function removeMusicItem(button) {
+            const musicItem = button.closest('.music-item');
+            musicItem.remove();
+        }
+
+        function togglePlay(button, audioSrc) {
+            const isPlaying = button.textContent === '⏸️';
+            
+            // Stop all other playing audio
+            document.querySelectorAll('.play-btn').forEach(btn => {
+                if (btn !== button) {
+                    btn.textContent = '▶️';
+                }
+            });
+            
+            if (isPlaying) {
+                button.textContent = '▶️';
+                if (window.currentAudio) {
+                    window.currentAudio.pause();
+                }
+            } else {
+                button.textContent = '⏸️';
+                if (window.currentAudio) {
+                    window.currentAudio.pause();
+                }
+                
+                if (audioSrc) {
+                    window.currentAudio = new Audio(audioSrc);
+                    window.currentAudio.play();
+                    
+                    window.currentAudio.addEventListener('ended', () => {
+                        button.textContent = '▶️';
+                    });
+                    
+                    window.currentAudio.addEventListener('loadedmetadata', () => {
+                        const duration = window.currentAudio.duration;
+                        const minutes = Math.floor(duration / 60);
+                        const seconds = Math.floor(duration % 60);
+                        const durationSpan = button.parentElement.querySelector('.duration');
+                        durationSpan.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                    });
+                }
+            }
+        }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.9)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe portfolio items
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(50px)';
+            item.style.transition = 'all 0.6s ease';
+            observer.observe(item);
+        });
+    </script>
+</body>
+</html>
